@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<info>
+  <id>fc_mail_attachments</id>
+  <name>Mail Attachments</name>
+  <description>Mail Attachments</description>
+  <version>0.1</version>
+  <licence>AGPL</licence>
+  <author>Fincluster</author>
+  <require>5</require>
+</info>
