@@ -12,22 +12,26 @@ $query = \OCP\DB::prepare('SELECT * FROM `*PREFIX*fc_mail_attachments` WHERE use
 $results = $query->execute(array($user))->fetchAll();
 
 $cid = null;
+$cdata = array();
+$cfields = array("dir", "mail_host", "mail_port", "mail_security", "mail_user", "mail_password");
+
 if (sizeof($results)) {
     $cid = $results[0]["id"];
+    $cdata = $results[0];
 }
 
 if (!isset($_GET['mail_security']) || $_GET['mail_security'] == "") {
     $_GET['mail_security'] = 'none';
 }
 
-$cdata = array();
-$cfields = array("dir", "mail_host", "mail_port", "mail_security", "mail_user", "mail_password");
 $errors = array();
 foreach ($cfields as $cfield) {
     if (isset($_GET[$cfield]) && $_GET[$cfield] != "") {
         $cdata[$cfield] = $_GET[$cfield];
     } else {
-        $errors[] = "Field '".$cfield."' is not set";
+        if (!isset($cdata[$cfield]) || $cdata[$cfield] == "") {
+            $errors[] = "Field '".$cfield."' is not set";
+        }
     }
 }
 

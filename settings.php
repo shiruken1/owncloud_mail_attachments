@@ -18,8 +18,9 @@ if (sizeof($results)) {
     $conf = $results[0];
     $tmpl->assign('dir', $conf['dir']);
     $tmpl->assign('mail_host', $conf['mail_host']);
+    $tmpl->assign('mail_port', $conf['mail_port']);
+    $tmpl->assign('mail_security', $conf['mail_security']);
     $tmpl->assign('mail_user', $conf['mail_user']);
-    $tmpl->assign('mail_password', $conf['mail_password']);
 }
 
 return $tmpl->fetchPage();
