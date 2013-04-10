@@ -151,9 +151,8 @@ class Imap
 					array_push($attachments, $result);
 				}
 			}
-		}
-		else if (isset($part->disposition)) {
-			if ($part->disposition == "ATTACHMENT") {
+		} else if (isset($part->disposition)) {
+            if (strtoupper($part->disposition) == "ATTACHMENT") {
 				$partStruct = imap_bodystruct($this->stream, imap_msgno($this->stream, $uid), $partNum);
 				$attachmentDetails = array(
 						"name"    => $part->dparameters[0]->value,
