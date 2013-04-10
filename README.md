@@ -19,7 +19,8 @@ through Owncloud web access, desktop sync clients and mobile apps.
 Owncloud 5 is required.
 
 Download Owncloud mail attachments tarball, uncompress it in Owncloud apps directory and rename it in `fc_mail_attachments`.
-
+Please refer to ownCloud wiki for cron setup:
+(http://doc.owncloud.org/server/5.0/admin_manual/configuration/background_jobs.html)
 
 ###TODO###
 * multiple mail accounts for each user
