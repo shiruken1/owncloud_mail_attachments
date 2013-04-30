@@ -31,3 +31,4 @@ Feel free to request us features and submit issues.
 
 
 Read the announce <a href="http://fincluster.com/blog/owncloud-mail-attachments-mirror-company-mail-attachments-to-the-cloud/">here</a>
+Fincluster Cloud storage for Business <a href="http://fincluster.com/cloud/">here</a>
