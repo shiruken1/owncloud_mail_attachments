@@ -30,6 +30,6 @@ Please refer to ownCloud wiki for cron setup:
 Feel free to request us features and submit issues.
 
 
-Read the announce <a href="http://fincluster.com/blog/owncloud-mail-attachments-mirror-company-mail-attachments-to-the-cloud/">here</a>
+Read the announce <a href="http://fincluster.com/blog/2013/04/owncloud-mail-attachments-mirror-company-mail-attachments-to-the-cloud/">here</a>
 
 <a href="http://fincluster.com/cloud/">Fincluster Cloud storage for Business</a>
