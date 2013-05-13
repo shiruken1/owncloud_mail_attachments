@@ -18,6 +18,8 @@ through ownCloud web access, desktop sync clients and mobile apps.
 ###Installation###
 ownCloud 5 is required.
 
+Install php_imap module: "sudo apt-get install php5-imap" on Debian / Ubuntu.
+
 Download ownCloud Mail Attachments tarball, uncompress it in ownCloud apps directory and rename it in `fc_mail_attachments`.
 Please refer to ownCloud wiki for cron setup:
 (http://doc.owncloud.org/server/5.0/admin_manual/configuration/background_jobs.html)
