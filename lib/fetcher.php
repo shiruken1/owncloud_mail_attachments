@@ -22,7 +22,7 @@ class Fetcher {
     }
     
     function cleanupName($name) {
-        return str_replace(array(":"), array(""), $name);
+        return str_replace(array(":", "\\", "/", "<", ">", ":", "\"", "|", "?", "*"), array(""), $name);
     }
     
     function saveAttachments($imap, $fs, $mboxdir, $uid) {
