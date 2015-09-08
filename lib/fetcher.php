@@ -31,7 +31,7 @@ class Fetcher {
         $attachments = $imap->getAttachments($uid);
         foreach ($attachments as $att) {
             $fdata = $imap->saveAttachment($uid, $att['partNum'], $att['enc']);
-            // $filename = $message->udate.'-'.$this->cleanupName($message->subject).'-'.$this->cleanupName($att['name']);
+            $filename = $this->cleanupName($att['name']);
             // if (!$fs->file_exists($mboxdir.$filename)) {
                 $fs->file_put_contents($mboxdir.$filename, $fdata);
                 $fs->touch($mboxdir.$filename, $message->udate);
