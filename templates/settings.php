@@ -1,5 +1,5 @@
 <form id="fc_mail_attachments" action="#" method="post">
-  <fieldset class="personalblock">
+  <fieldset class="personalblock">  
     <strong>Mail Attachments</strong><br />
     <input type="text" name="mail_host" id="mail_host" value="<?php p($_['mail_host']); ?>" placeholder="<?php p($l->t('Mail host'));?>" />
     <input type="text" name="mail_port" id="mail_port" value="<?php p($_['mail_port']); ?>" placeholder="<?php p($l->t('Mail port'));?>" />

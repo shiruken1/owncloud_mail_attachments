@@ -1,6 +1,4 @@
-<?php
-
-namespace OCA\fc_mail_attachments\lib;
+<?php namespace OCA\fc_mail_attachments\lib;
 
 class Imap 
 { 
@@ -24,8 +22,8 @@ class Imap
         if ($this->stream) {
             $this->close();
         }
-        $this->target = "{".$this->host.":".$this->port."/".$this->mode.($this->security != "none" ? "/".$this->security."/novalidate-cert" : "")."/readonly}"; 
-        $this->stream = imap_open($this->target.$mailbox, $this->username,$this->password); 
+        $this->target = "{".$this->host.":".$this->port."/".$this->mode.($this->security != "none" ? "/".$this->security."/novalidate-cert" : "")."/readonly}";
+        $this->stream = imap_open($this->target.$mailbox, $this->username,$this->password);
         if (!$this->stream) {
             throw new \Exception(implode(", ", imap_errors()));
         }

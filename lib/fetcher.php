@@ -5,7 +5,8 @@ namespace OCA\fc_mail_attachments\lib;
 class Fetcher {
     
     private $dir_data;
-    private $dir_mail = 'mail_attachments';
+    private $dir_mail = 'daily_quotes';
+    // private $dir_mail = 'mail_attachments';
     private $IMAP_BATCH_LIMIT = 10;
     
     function __construct() {
@@ -13,7 +14,7 @@ class Fetcher {
     }
     
     function skipMailbox($data, $mbname) {
-        foreach (array("spam", "trash", "[Gmail]/Drafts", "[Gmail]/Starred", "[Gmail]/Important") as $chk) {
+        foreach (array("spam", "trash", "INBOX.Drafts", "INBOX.Sent", "[Gmail]/Drafts", "[Gmail]/Starred", "[Gmail]/Important") as $chk) {
             if (stripos($mbname, $chk) !== FALSE) {
                 return true;
             }
@@ -30,11 +31,11 @@ class Fetcher {
         $attachments = $imap->getAttachments($uid);
         foreach ($attachments as $att) {
             $fdata = $imap->saveAttachment($uid, $att['partNum'], $att['enc']);
-            $filename = $message->udate.'-'.$this->cleanupName($message->subject).'-'.$this->cleanupName($att['name']);
-            if (!$fs->file_exists($mboxdir.$filename)) {
+            // $filename = $message->udate.'-'.$this->cleanupName($message->subject).'-'.$this->cleanupName($att['name']);
+            // if (!$fs->file_exists($mboxdir.$filename)) {
                 $fs->file_put_contents($mboxdir.$filename, $fdata);
                 $fs->touch($mboxdir.$filename, $message->udate);
-            }
+            // }
         }
     }
     
@@ -103,9 +104,10 @@ class Fetcher {
                     if ($curMboxInfo["historyUid"] == -1) {
                         $curMboxInfo["historyUid"] = $mboxLastMsgUid;                        
                     }
-                    
+
                     if ($mboxLastMsgUid != $curMboxInfo["lastSeenUid"]) {
                         $mboxCurMsgNo = $imap->getMessageNumber($curMboxInfo["lastSeenUid"]);
+
                         for($mboxCurMsgNo, $i = 0; $mboxCurMsgNo <= $mboxLastMsgNo && $i < $this->IMAP_BATCH_LIMIT; $mboxCurMsgNo++, $i++) {
                             $mboxCurMsgUid = $imap->getMessageUid($mboxCurMsgNo);
                             if (!$mboxCurMsgUid) { break; }
@@ -115,9 +117,13 @@ class Fetcher {
                     }
                     
                     $historyMsgNo = $imap->getMessageNumber($curMboxInfo["historyUid"]);
+
                     if ($historyMsgNo > 1) {
+
                         for($i = 0; $historyMsgNo > 0 && $i < $this->IMAP_BATCH_LIMIT; $historyMsgNo--, $i++) {
+
                             $historyMsgUid = $imap->getMessageUid($historyMsgNo);
+
                             if (!$historyMsgUid) { break; }
                             $this->saveAttachments($imap, $fs, $mboxdir, $historyMsgUid);
                             $curMboxInfo["historyUid"] = $historyMsgUid;   
@@ -125,8 +131,10 @@ class Fetcher {
                     }
 
                     $fs->file_put_contents($mboxdir.'.info', json_encode($curMboxInfo));
-                }   
+                }
+
                 $imap->close();
+
             } catch(\Exception $e) {
                 echo "FCMA ERROR [".$entry["user"]."]: ".$e->getMessage();
             }
