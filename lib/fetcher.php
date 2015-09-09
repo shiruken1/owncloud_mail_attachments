@@ -5,7 +5,8 @@ namespace OCA\fc_mail_attachments\lib;
 class Fetcher {
     
     private $dir_data;
-    private $dir_mail = 'mail_attachments';
+    private $dir_mail = 'daily_quotes';
+    // private $dir_mail = 'mail_attachments';
     private $IMAP_BATCH_LIMIT = 10;
     
     function __construct() {
