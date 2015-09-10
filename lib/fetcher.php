@@ -5,8 +5,7 @@ namespace OCA\fc_mail_attachments\lib;
 class Fetcher {
     
     private $dir_data;
-    private $dir_mail = 'daily_quotes';
-    // private $dir_mail = 'mail_attachments';
+    private $dir_mail = 'mail_attachments';
     private $IMAP_BATCH_LIMIT = 10;
     
     function __construct() {
@@ -32,6 +31,7 @@ class Fetcher {
         foreach ($attachments as $att) {
             $fdata = $imap->saveAttachment($uid, $att['partNum'], $att['enc']);
             $filename = $this->cleanupName($att['name']);
+            // $filename = $message->udate.'-'.$this->cleanupName($message->subject).'-'.$this->cleanupName($att['name']);
             // if (!$fs->file_exists($mboxdir.$filename)) {
                 $fs->file_put_contents($mboxdir.$filename, $fdata);
                 $fs->touch($mboxdir.$filename, $message->udate);
